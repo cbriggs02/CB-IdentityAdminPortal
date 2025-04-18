@@ -1,1 +1,1 @@
-# CB-IdentityService-Admin-Portal
+# CB-IdentityAdminPortal

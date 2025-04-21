@@ -4,17 +4,10 @@
  *
  * IAuthService - An interface that defines methods for user authentication.
  * Provides the contract for login and logout functionality.
- *
- * Dependencies:
- * - None.
- *
- * Usage:
- * - This interface is implemented by the `AuthService` class to handle authentication logic.
- * - The `login` method sends credentials to the API and returns an observable that can be subscribed to.
- * - The `logout` method clears any authentication-related data or tokens.
  */
 import { Observable } from 'rxjs';
-import { LoginCredentials } from '../models/login-credentials.model';
+import { LoginCredentials } from '../../models/login-credentials.model';
+import { AuthResponse } from './auth-response.interface';
 
 export interface IAuthService {
   /**
@@ -23,7 +16,7 @@ export interface IAuthService {
    * @param credentials The credentials object containing the user's username and password.
    * @returns Observable that resolves with the authentication response.
    */
-  login(credentials: LoginCredentials): Observable<any>;
+  login(credentials: LoginCredentials): Observable<AuthResponse>;
 
   /**
    * Logs the user out by clearing authentication-related data or tokens.

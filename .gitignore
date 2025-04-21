@@ -41,3 +41,6 @@ yarn-error.log
 
 # Angular environment files
 IdentityAdminPortal/src/environments/environment.ts
+
+# Yarn lock file
+**/yarn.lock

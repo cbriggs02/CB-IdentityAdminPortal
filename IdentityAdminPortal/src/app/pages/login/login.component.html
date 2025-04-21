@@ -1,0 +1,55 @@
+<div class="login-container">
+  <div class="login-form">
+    <h2>Login</h2>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          [(ngModel)]="credentials.username"
+          placeholder="Enter your username"
+          required
+          class="input"
+          [ngClass]="{ 'input-error': errorMessage }"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          [type]="hidePassword ? 'password' : 'text'"
+          id="password"
+          name="password"
+          [(ngModel)]="credentials.password"
+          placeholder="Enter your password"
+          required
+          class="input"
+          [ngClass]="{ 'input-error': errorMessage }"
+        />
+        <div class="password-toggle">
+          <input
+            type="checkbox"
+            id="togglePassword"
+            (change)="togglePassword()"
+          />
+          <label for="togglePassword" class="toggle-label">Show Password</label>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        class="btn btn-primary"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+</div>

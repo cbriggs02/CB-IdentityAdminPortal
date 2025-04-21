@@ -1,0 +1,103 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #4682B4
+}
+
+.login-form {
+  padding: 3rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  max-width: 400px;
+}
+
+.login-form, input {
+  background-color: #F4F4F4;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  margin-bottom: 0.75rem;
+  display: block;
+  font-size: 1.2rem;
+}
+
+.input, .btn {
+  width: 100%;
+  padding: 20px;
+  font-size: 16px;
+}
+
+.input {
+  margin-bottom: 15px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.error-message {
+  color: red;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.input-error {
+  border-color: #e74c3c !important;
+  box-shadow: 0 0 4px rgba(231, 76, 60, 0.6);
+}
+
+.password-toggle {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.toggle-label {
+  font-size: 0.95em;
+  margin-left: 10px;
+  margin-bottom: 0;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+.btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  background-color: #cccccc;
+}
+
+@media (max-width: 768px) {
+  .login-form {
+    padding: 1rem;
+    width: 90%;
+  }
+}

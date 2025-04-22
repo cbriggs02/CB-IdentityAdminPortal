@@ -13,4 +13,13 @@ export const API_ROUTES = {
    * This endpoint allows the frontend to send login credentials and receive a token for further authentication.
    */
   LOGIN: `${environment.apiBaseUrl}/api/v1/Login/tokens`,
+
+  /**
+   * USERS - Grouping of all user-related API endpoints.
+   * Encapsulates routes pertaining to user operations for better organization.
+   */
+  USERS: {
+    // METRICS - Endpoint to retrieve user state metrics.
+    STATE_METRICS: `${environment.apiBaseUrl}/api/v1/users/state-metrics`,
+  },
 };

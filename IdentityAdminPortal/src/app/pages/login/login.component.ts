@@ -15,6 +15,7 @@ import { ApiErrorTypes } from '../../enums/api-error-types.enum';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ApiErrorResponse } from '../../interfaces/shared/api-error-response.interface';
 import { Router } from '@angular/router';
+import { AppRoutes } from '../../constants/app-routes.constants';
 
 @Component({
   selector: 'app-login',
@@ -51,7 +52,7 @@ export class LoginComponent {
     this.authService.login(this.credentials).subscribe(
       () => {
         this.errorMessage = '';
-        this.router.navigate(['/home']);
+        this.router.navigate([AppRoutes.DASHBOARD]);
       },
       (error) => {
         this.errorMessage = this.mapErrorMessage(error);

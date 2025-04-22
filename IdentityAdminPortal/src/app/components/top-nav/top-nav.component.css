@@ -1,0 +1,30 @@
+.nav {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: #3f51b5;
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  z-index: 10;
+}
+
+.brand-name {
+  font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  padding: 0 25px;
+  color: #fff;
+}
+
+.logout-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 0 25px;
+}
+
+.logout-link:hover {
+  text-decoration: underline;
+}
+

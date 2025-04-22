@@ -7,12 +7,15 @@
  */
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AppRoutes } from '../../constants/app-routes.constants';
 
 @Component({
-  selector: 'app-not-found',
+  selector: 'app-404',
   standalone: true,
   imports: [RouterModule],
-  templateUrl: './not-found.component.html',
-  styleUrl: './not-found.component.css',
+  templateUrl: './404.component.html',
+  styleUrl: './404.component.css',
 })
-export class NotFoundComponent {}
+export class NotFoundComponent {
+  dashboardRoute = AppRoutes.DASHBOARD;
+}

@@ -6,12 +6,19 @@
  */
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AuthGuard } from './guards/auth.guard';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NotFoundComponent } from './pages/404/404.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'home', component: HomePageComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  {
+    path: '',
+    component: MainLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [{ path: 'dashboards', component: DashboardComponent }],
+  },
   { path: '**', component: NotFoundComponent },
 ];

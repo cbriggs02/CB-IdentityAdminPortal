@@ -13,3 +13,10 @@ body {
 h1, h2 {
   font-weight: normal;
 }
+
+li {
+  list-style-type: none;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

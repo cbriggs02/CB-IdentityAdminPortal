@@ -8,10 +8,10 @@
 import {
   DecodedToken,
   ITokenService,
-} from '../interfaces/auth/token.service.interface';
+} from '../../interfaces/auth/token.service.interface';
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
-import { AuthService } from './auth/auth.service';
+import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class TokenService implements ITokenService {
@@ -56,7 +56,6 @@ export class TokenService implements ITokenService {
     try {
       return jwtDecode<DecodedToken>(token);
     } catch (error) {
-      console.warn('JWT decode failed:', error);
       return null;
     }
   }

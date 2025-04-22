@@ -1,6 +1,6 @@
 # CB-IdentityAdminPortal
 
-A secure and modular Angular application designed for managing identity, users, and roles. This admin portal communicates with the IdentityServiceApi (ASP.NET Core Web API) for managing user authentication and role-based access control. Built using modern front-end practices, this portal is scalable, maintainable, and integrates well with DevOps workflows.
+A secure and modular Angular application designed for managing identity, users, and roles. This admin portal communicates with the IdentityServiceApi (ASP.NET Core Web API) for managing user authentication and role-based access control. Built using modern front-end practices, this portal is scalable and maintainable.
 
 ## Overview
 
@@ -15,9 +15,10 @@ This front-end application consumes the following API:
 ## System Design
 
 - **Modular Architecture**: The application is broken down into the following layers:
-  - **Components**: Represent UI views for managing users, roles, and authentication.
+  - **Pages**: Represent UI views for managing users, roles, and authentication.
+  -  **Interfaces**: Define services and structure of api responses to enfource type saftey.
   - **Services**: Handle business logic and communication with the backend API.
-  - **Models**: Define the structure of requests and responses.
+  - **Models**: Define the structure of expected user input.
 - **Angular**: Utilizes Angular's powerful tools like reactive forms, HTTP client, routing, and state management for building dynamic single-page applications.
 - **State Management**: Utilizes services to manage user sessions, authentication tokens, and user roles across the app.
 - **API Integration**: Secure communication with the **IdentityServiceApi** backend via HTTP, using Angular's HTTP client to make API calls.

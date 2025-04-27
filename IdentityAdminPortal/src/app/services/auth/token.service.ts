@@ -1,10 +1,3 @@
-/**
- * @Author : Christian Briglio
- * @Created : 2025
- *
- * TokenService - A service to handle operations related to JWT tokens.
- * Provides methods to extract and decode token data from session storage.
- */
 import {
   DecodedToken,
   ITokenService,
@@ -13,6 +6,13 @@ import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { AuthService } from './auth.service';
 
+/**
+ * @Author : Christian Briglio
+ * @Created : 2025
+ *
+ * TokenService - A service to handle operations related to JWT tokens.
+ * Provides methods to extract and decode token data from session storage.
+ */
 @Injectable({ providedIn: 'root' })
 export class TokenService implements ITokenService {
   /**

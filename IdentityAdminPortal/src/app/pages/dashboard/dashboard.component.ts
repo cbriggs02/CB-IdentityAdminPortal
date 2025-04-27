@@ -1,3 +1,8 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
+import { Color } from '@swimlane/ngx-charts';
+import { UserService } from '../../services/user-management/user.service';
+
 /**
  * @Author : Christian Briglio
  * @Created : 2025
@@ -5,11 +10,6 @@
  * DashBoardComponent -This component represents the dashboard view where various user state metrics are visualized using
  * a bar chart. It fetches the user metrics at regular intervals and updates the chart accordingly.
  */
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
-import { Color } from '@swimlane/ngx-charts';
-import { UserService } from '../../services/user-management/user.service';
-
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   private fetchStateMetrics(): void {
-    this.userService.GetUserStateMetrics().subscribe((response) => {
+    this.userService.getUserStateMetrics().subscribe((response) => {
       this.single = [
         { name: 'Total Users', value: response.body?.totalCount },
         { name: 'Activated Users', value: response.body?.activatedUsers },

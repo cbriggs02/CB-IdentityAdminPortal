@@ -1,3 +1,11 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, tap } from 'rxjs';
+import { API_ROUTES } from '../../constants/routes/api-routes.constants';
+import { IAuthService } from '../../interfaces/auth/auth.service.interface';
+import { LoginCredentials } from '../../models/login-credentials.model';
+import { AuthResponse } from '../../interfaces/auth/auth-response.interface';
+
 /**
  * @Author : Christian Briglio
  * @Created : 2025
@@ -5,14 +13,6 @@
  * AuthService - A service to handle user authentication logic.
  * Provides methods for login functionality.
  */
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-import { API_ROUTES } from '../../constants/api-routes.constants';
-import { IAuthService } from '../../interfaces/auth/auth.service.interface';
-import { LoginCredentials } from '../../models/login-credentials.model';
-import { AuthResponse } from '../../interfaces/auth/auth-response.interface';
-
 @Injectable({ providedIn: 'root' })
 export class AuthService implements IAuthService {
   /**

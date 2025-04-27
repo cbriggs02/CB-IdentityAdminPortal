@@ -8,7 +8,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
-import { AppRoutes } from '../../constants/app-routes.constants';
+import { AppRoutes } from '../../constants/routes/app-routes.constants';
 
 @Component({
   selector: 'app-top-nav',

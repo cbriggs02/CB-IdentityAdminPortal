@@ -1,0 +1,39 @@
+/**
+ * @Author : Christian Briglio
+ * @Created : 2025
+ *
+ * AppRoutes - A central location for defining all application routes.
+ * Storing routes as constants helps avoid hardcoding URLs throughout the application,
+ * promoting consistency and making future updates easier.
+ */
+export const AppRoutes = {
+  /**
+   * Route for the Dashboard page.
+   * Represents the main page of the application where users can see the overview of their data.
+   */
+  DASHBOARD: '/dashboards',
+
+  /**
+   * Route for the Login page.
+   * Users are redirected to this page when they need to log in to the application.
+   */
+  LOGIN: '/login',
+
+  /**
+   * Route for the Error page.
+   * This page is shown when an unexpected error occurs in the application.
+   */
+  ERROR: '/error',
+
+  /**
+   * Route for the Unauthorized page.
+   * Users are redirected to this page if they attempt to access a restricted area without proper credentials.
+   */
+  UNAUTHORIZED: 'error/access-denied',
+
+  /**
+   * Route for the Forbidden page.
+   * This page is shown when users do not have permission to access a particular resource or page.
+   */
+  FORBIDDEN: 'error/forbidden',
+};

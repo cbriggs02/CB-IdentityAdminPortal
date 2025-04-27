@@ -1,3 +1,8 @@
+import { Component } from '@angular/core';
+import { TopNavComponent } from '../../components/top-nav/top-nav.component';
+import { SideNavComponent } from '../../components/side-nav/side-nav.component';
+import { RouterModule } from '@angular/router';
+
 /**
  * @Author  : Christian Briglio
  * @Created : 2025
@@ -16,11 +21,6 @@
  * - SideNavComponent: Displays the sidebar navigation menu.
  * - RouterModule: Handles dynamic view rendering based on route configuration.
  */
-import { Component } from '@angular/core';
-import { TopNavComponent } from '../../components/top-nav/top-nav.component';
-import { SideNavComponent } from '../../components/side-nav/side-nav.component';
-import { RouterModule } from '@angular/router';
-
 @Component({
   selector: 'app-main-layout',
   standalone: true,

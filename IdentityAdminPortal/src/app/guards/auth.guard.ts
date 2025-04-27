@@ -1,3 +1,8 @@
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { AuthService } from '../services/auth/auth.service';
+import { AppRoutes } from '../constants/routes/app-routes.constants';
+
 /**
  * @Author : Christian Briglio
  * @Created : 2025
@@ -6,10 +11,6 @@
  * It ensures that only users with a valid authentication token can access
  * specific routes. If no token is found, it redirects the user to the login page.
  */
-import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
-
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   /**
@@ -32,11 +33,11 @@ export class AuthGuard implements CanActivate {
   canActivate(): boolean {
     const token = this.authService.getAuthToken();
 
-    if (token) {
-      return true;
+    if (!token) {
+      this.router.navigate([AppRoutes.LOGIN]);
+      return false;
     }
 
-    this.router.navigate(['/login']);
-    return false;
+    return true;
   }
 }

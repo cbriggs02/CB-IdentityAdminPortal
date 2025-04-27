@@ -1,3 +1,6 @@
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+
 /**
  * @Author : Christian Briglio
  * @Created : 2025
@@ -7,9 +10,6 @@
  * This component serves as the root container for the Angular application,
  * holding the primary title and setting up routing through the RouterOutlet.
  */
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],

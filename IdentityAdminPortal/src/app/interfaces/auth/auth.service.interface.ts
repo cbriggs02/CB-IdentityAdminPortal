@@ -1,3 +1,7 @@
+import { Observable } from 'rxjs';
+import { LoginCredentials } from '../../models/login-credentials.model';
+import { AuthResponse } from './auth-response.interface';
+
 /**
  * @Author : Christian Briglio
  * @Created : 2025
@@ -5,10 +9,6 @@
  * IAuthService - An interface that defines methods for user authentication.
  * Provides the contract for login and logout functionality.
  */
-import { Observable } from 'rxjs';
-import { LoginCredentials } from '../../models/login-credentials.model';
-import { AuthResponse } from './auth-response.interface';
-
 export interface IAuthService {
   /**
    * Logs the user in by sending their credentials to the authentication API.

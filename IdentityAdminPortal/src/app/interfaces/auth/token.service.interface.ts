@@ -18,6 +18,7 @@ export interface ITokenService {
    */
   getUserRoles(): string[];
 }
+
 /**
  * DecodedToken - Interface for the decoded token payload structure.
  * Represents the claims in a decoded JWT token.

@@ -17,10 +17,7 @@ import { throwError } from 'rxjs/internal/observable/throwError';
  * @param next - The next interceptor or backend handler in the HTTP pipeline.
  * @returns An Observable of the HTTP event stream with error handling applied.
  */
-export const apiErrorInterceptorInterceptor: HttpInterceptorFn = (
-  req,
-  next
-) => {
+export const apiErrorInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
 
   return next(req).pipe(

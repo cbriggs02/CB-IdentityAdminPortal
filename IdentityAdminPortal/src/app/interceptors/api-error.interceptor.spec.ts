@@ -7,13 +7,11 @@
  */
 import { TestBed } from '@angular/core/testing';
 import { HttpInterceptorFn } from '@angular/common/http';
-import { apiErrorInterceptorInterceptor } from './api-error.interceptor.interceptor';
+import { apiErrorInterceptor } from './api-error.interceptor';
 
 describe('apiErrorInterceptorInterceptor', () => {
   const interceptor: HttpInterceptorFn = (req, next) =>
-    TestBed.runInInjectionContext(() =>
-      apiErrorInterceptorInterceptor(req, next)
-    );
+    TestBed.runInInjectionContext(() => apiErrorInterceptor(req, next));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

@@ -1,3 +1,5 @@
+import { HttpHeaders } from '@angular/common/http';
+
 /**
  * @Author Christian Briglio
  * @Created 2025
@@ -7,8 +9,6 @@
  * This service will be used by other services that require authentication
  * headers for API calls.
  */
-import { HttpHeaders } from '@angular/common/http';
-
 export interface IAuthHeaderService {
   /**
    * Builds and returns the HTTP headers for an authenticated request.

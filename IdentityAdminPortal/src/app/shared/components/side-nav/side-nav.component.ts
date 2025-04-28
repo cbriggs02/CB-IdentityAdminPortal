@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AppRoutes } from '../../constants/routes/app-routes.constants';
+import { AppRoutes } from '../../../core/constants/routes/app-routes.constants';
 
 /**
  * @Author   : Christian Briglio

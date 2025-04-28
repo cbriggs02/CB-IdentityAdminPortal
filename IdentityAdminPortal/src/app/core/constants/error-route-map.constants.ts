@@ -1,5 +1,5 @@
 import { AppRoutes } from './routes/app-routes.constants';
-import { HttpStatusCode } from '../enums/http-status-code.enum';
+import { HttpStatusCode } from '../../core/enums/http-status-code.enum';
 
 /**
  * @Author : Christian Briglio

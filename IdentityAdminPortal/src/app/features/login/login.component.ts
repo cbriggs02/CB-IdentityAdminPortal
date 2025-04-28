@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../services/auth/auth.service';
-import { LoginCredentials } from '../../models/login-credentials.model';
-import { ErrorMessages } from '../../constants/error-messages.constants';
-import { LoginApiErrorTypes } from '../../enums/api-error-types/login-api-error-types.enum';
+import { AuthService } from '../../core/services/auth/auth.service';
+import { LoginCredentials } from '../../core/models/login-credentials.model';
+import { ErrorMessages } from '../../core/constants/error-messages.constants';
+import { LoginApiErrorTypes } from '../../core/enums/api-error-types/login-api-error-types.enum';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ApiErrorResponse } from '../../interfaces/shared/api-error-response.interface';
+import { ApiErrorResponse } from '../../core/interfaces/shared/api-error-response.interface';
 import { Router } from '@angular/router';
-import { AppRoutes } from '../../constants/routes/app-routes.constants';
+import { AppRoutes } from '../../core/constants/routes/app-routes.constants';
 
 /**
  * @Author : Christian Briglio
@@ -36,19 +36,19 @@ export class LoginComponent {
    * @param authService - The authentication service used for logging in the user.
    * @param router - The Angular Router service used for navigating to different routes in the application.
    */
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
   /**
    * togglePassword - Toggles the visibility of the password input field.
    */
-  togglePassword () {
+  togglePassword() {
     this.hidePassword = !this.hidePassword;
   }
 
   /**
    * onSubmit - Handles the form submission and calls the AuthService to log in the user.
    */
-  onSubmit () {
+  onSubmit() {
     this.authService.login(this.credentials).subscribe(
       () => {
         this.errorMessage = '';
@@ -60,7 +60,7 @@ export class LoginComponent {
     );
   }
 
-  private mapErrorMessage (error: HttpErrorResponse): string {
+  private mapErrorMessage(error: HttpErrorResponse): string {
     const apiErrorResponse = error.error as ApiErrorResponse;
 
     if (error?.status === 400 && apiErrorResponse?.errors) {

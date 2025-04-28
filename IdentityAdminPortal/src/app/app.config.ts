@@ -1,9 +1,14 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  ErrorHandler,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { apiErrorInterceptor } from './interceptors/api-error.interceptor';
+import { apiErrorInterceptor } from './core/interceptors/api-error.interceptor';
+import { GlobalErrorHandlerService } from './core/services/global-error-handler.service';
 
 /**
  * @Author : Christian Briglio
@@ -19,5 +24,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptors([apiErrorInterceptor])),
     provideAnimations(),
+    { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
   ],
 };

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import { Color } from '@swimlane/ngx-charts';
-import { UserService } from '../../services/user-management/user.service';
+import { UserService } from '../../core/services/user-management/user.service';
 
 /**
  * @Author : Christian Briglio

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth/auth.service';
-import { AppRoutes } from '../../constants/routes/app-routes.constants';
+import { AuthService } from '../../../core/services/auth/auth.service';
+import { AppRoutes } from '../../../core/constants/routes/app-routes.constants';
 
 /**
  * @Author : Christian Briglio

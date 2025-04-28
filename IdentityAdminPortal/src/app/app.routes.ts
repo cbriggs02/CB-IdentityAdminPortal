@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { AuthGuard } from './guards/auth.guard';
-import { NotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ErrorComponent } from './pages/error/error.component';
-import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
-import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
+import { LoginComponent } from './features/login/login.component';
+import { AuthGuard } from './core/guards/auth.guard';
+import { NotFoundComponent } from './features/page-not-found/page-not-found.component';
+import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { ErrorComponent } from './features/error/error.component';
+import { UnauthorizedComponent } from './features/unauthorized/unauthorized.component';
+import { ForbiddenComponent } from './features/forbidden/forbidden.component';
 
 /**
  * @Author : Christian Briglio

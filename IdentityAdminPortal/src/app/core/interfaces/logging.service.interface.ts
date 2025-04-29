@@ -20,4 +20,18 @@ export interface ILoggingService {
    * @param message - The error message to be logged, typically a string that explains the error or failure.
    */
   error(message: string): void;
+
+  /**
+   * Logs an informational message. This method can be used to log general informational events in the application, such as system status or other relevant non-error details.
+   *
+   * @param message - The informational message to be logged, typically a string with application details.
+   */
+  info(message: string): void;
+
+  /**
+   * Logs a warning message. This method can be used to log potential issues or areas that may require attention but are not critical errors.
+   *
+   * @param message - The warning message to be logged, typically a string highlighting potential issues or important alerts.
+   */
+  warning(message: string): void;
 }

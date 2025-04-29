@@ -7,6 +7,8 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { ErrorComponent } from './features/error/error.component';
 import { UnauthorizedComponent } from './features/unauthorized/unauthorized.component';
 import { ForbiddenComponent } from './features/forbidden/forbidden.component';
+import { RoleGuard } from './core/guards/role.guard';
+import { Role } from './core/enums/roles.enum';
 
 /**
  * @Author : Christian Briglio
@@ -20,7 +22,8 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, RoleGuard],
+    data: { roles: [Role.Admin, Role.SuperAdmin] },
     children: [{ path: 'dashboards', component: DashboardComponent }],
   },
   { path: 'error/access-denied', component: UnauthorizedComponent },

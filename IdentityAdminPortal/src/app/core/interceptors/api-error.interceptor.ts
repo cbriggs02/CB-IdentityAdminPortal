@@ -22,9 +22,8 @@ export const apiErrorInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      console.log('test');
-
       const redirectRoute = ErrorRouteMap[error.status as HttpStatusCode];
+
       if (redirectRoute) {
         router.navigate([redirectRoute]);
       }

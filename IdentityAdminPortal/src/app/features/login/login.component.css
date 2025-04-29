@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #3f51b5;
+  background-color: #E8EAF6;
 }
 
 .login-form {
@@ -14,7 +14,8 @@
   max-width: 400px;
 }
 
-.login-form, input {
+.login-form,
+input {
   background-color: #F4F4F4;
 }
 
@@ -34,7 +35,8 @@ label {
   font-size: 1.2rem;
 }
 
-.input, .btn {
+.input,
+.btn {
   width: 100%;
   padding: 20px;
   font-size: 16px;

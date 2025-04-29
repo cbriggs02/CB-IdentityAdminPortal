@@ -5,6 +5,8 @@ import {
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { AuthService } from './auth.service';
+import { CLAIMS } from '../../constants/auth-claims.constants';
+import { LoggingService } from '../logging.service';
 
 /**
  * @Author : Christian Briglio
@@ -17,13 +19,17 @@ import { AuthService } from './auth.service';
 export class TokenService implements ITokenService {
   /**
    * Constructor for the TokenService.
-   * Initializes the TokenService instance and injects the AuthService dependency.
-   * The constructor sets up the AuthService that provides authentication-related methods,
-   * including retrieving the authentication token.
+   * Initializes the TokenService instance by injecting the AuthService and LoggingService dependencies.
+   * The constructor sets up the AuthService for retrieving authentication-related tokens,
+   * and the LoggingService for logging any errors or information related to the token operations.
    *
    * @param authService - The AuthService used to interact with authentication tokens.
+   * @param logger - The LoggingService used for logging errors and important information.
    */
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private logger: LoggingService
+  ) {}
 
   /**
    * Gets the user's unique identifier from the decoded token.
@@ -40,13 +46,40 @@ export class TokenService implements ITokenService {
    */
   getUserRoles(): string[] {
     const decoded = this.decodeToken();
-    if (!decoded?.role) return [];
+    if (!decoded) return [];
 
-    return Array.isArray(decoded.role) ? decoded.role : [decoded.role];
+    const roles = decoded[CLAIMS.ROLE];
+    if (!roles) return [];
+
+    if (typeof roles === 'string') {
+      return [roles];
+    }
+
+    return Array.isArray(roles) ? roles : [];
+  }
+
+  /**
+   * Checks whether the current authentication token is expired.
+   * It decodes the token and compares its expiration time (`exp`) to the current time.
+   *
+   * @returns True if the token is expired or invalid, false otherwise.
+   */
+  isTokenExpired(): boolean {
+    const exp = this.getExpirationDate();
+    return !exp || exp < new Date();
+  }
+
+  private getExpirationDate(): Date | null {
+    const decoded = this.decodeToken();
+    return decoded?.exp ? new Date(decoded.exp * 1000) : null;
   }
 
   private getToken(): string | null {
-    return this.authService.getAuthToken();
+    const token = this.authService.getAuthToken();
+    if (!token) {
+      this.logger.warning('No auth token found in session');
+    }
+    return token;
   }
 
   private decodeToken(): DecodedToken | null {
@@ -56,6 +89,7 @@ export class TokenService implements ITokenService {
     try {
       return jwtDecode<DecodedToken>(token);
     } catch (error) {
+      this.logger.error('Failed to decode the JWT token');
       return null;
     }
   }

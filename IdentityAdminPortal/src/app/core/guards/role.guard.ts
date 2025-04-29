@@ -61,13 +61,13 @@ export class RoleGuard implements CanActivate {
     if (!hasRequiredRole) {
       if (isAdminOrSuperAdmin) {
         this.logActivity(
-          `Admin user attempted to access restricted page: ${route.routeConfig?.path}`,
+          `Admin user attempted to access restricted page: ${route.routeConfig?.path}.`,
           LogLevels.Warning
         );
         this.redirectToForbidden();
       } else {
         this.logActivity(
-          `Basic user attempted to access restricted page: ${route.routeConfig?.path}`,
+          `Basic user attempted to access admin portal.`,
           LogLevels.Warning
         );
         this.logoutAndRedirect();

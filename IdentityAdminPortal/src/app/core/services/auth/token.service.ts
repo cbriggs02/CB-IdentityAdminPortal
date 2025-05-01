@@ -7,6 +7,7 @@ import { jwtDecode } from 'jwt-decode';
 import { AuthService } from './auth.service';
 import { CLAIMS } from '../../constants/auth-claims.constants';
 import { LoggingService } from '../logging.service';
+import { LogLevels } from '../../enums/log-levels.enum';
 
 /**
  * @Author : Christian Briglio
@@ -77,7 +78,7 @@ export class TokenService implements ITokenService {
   private getToken(): string | null {
     const token = this.authService.getAuthToken();
     if (!token) {
-      this.logger.warning('No auth token found in session');
+      this.logActivity('No auth token found in session', LogLevels.Warning);
     }
     return token;
   }
@@ -89,8 +90,22 @@ export class TokenService implements ITokenService {
     try {
       return jwtDecode<DecodedToken>(token);
     } catch (error) {
-      this.logger.error('Failed to decode the JWT token');
+      this.logActivity('Failed to decode the JWT token', LogLevels.Error);
       return null;
+    }
+  }
+
+  private logActivity(message: string, level: LogLevels): void {
+    switch (level) {
+      case LogLevels.Warning:
+        this.logger.warning(message);
+        break;
+      case LogLevels.Error:
+        this.logger.error(message);
+        break;
+      default:
+        this.logger.log(message);
+        break;
     }
   }
 }

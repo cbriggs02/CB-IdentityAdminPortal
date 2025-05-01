@@ -19,7 +19,10 @@ export const API_ROUTES = {
    * Encapsulates routes pertaining to user operations for better organization.
    */
   USERS: {
-    // METRICS - Endpoint to retrieve user state metrics.
+    // STATE METRICS - Endpoint to retrieve user state metrics.
     STATE_METRICS: `${environment.apiBaseUrl}/api/${environment.apiVersion}/users/state-metrics`,
+
+    // CREATION STATS - Endpoint to retrieve user creation stats.
+    CREATION_STATS: `${environment.apiBaseUrl}/api/${environment.apiVersion}/users/creation-stats`,
   },
 };

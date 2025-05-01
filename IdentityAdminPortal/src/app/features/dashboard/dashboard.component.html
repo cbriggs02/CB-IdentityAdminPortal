@@ -1,16 +1,8 @@
-<section class="dashboard-container">
-  <div class="chart-grid">
-    <div class="chart-item">
-      <ngx-charts-bar-vertical
-        [results]="single"
-        [scheme]="colorScheme"
-        [xAxis]="true"
-        [yAxis]="true"
-        [legend]="true"
-        [showXAxisLabel]="true"
-        [showYAxisLabel]="true"
-      >
-      </ngx-charts-bar-vertical>
-    </div>
+<div class="dashboard-container">
+  <div class="chart-container">
+    <app-state-metrics-chart></app-state-metrics-chart>
   </div>
-</section>
+  <div class="chart-container">
+    <app-creation-stats-chart></app-creation-stats-chart>
+  </div>
+</div>

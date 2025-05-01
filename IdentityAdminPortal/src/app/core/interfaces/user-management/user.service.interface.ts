@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { UserStateMetricResponse } from './user-state-metrics-response.interface';
 import { HttpResponse } from '@angular/common/http';
+import { UserCreationStatsResponse } from './user-creation-stats-response.interface';
 
 /**
  * @Author Christian Briglio
@@ -16,4 +17,11 @@ export interface IUserService {
    * This includes the total count of users, activated users, and deactivated users.
    */
   getUserStateMetrics(): Observable<HttpResponse<UserStateMetricResponse>>;
+
+  /**
+   * Retrieves user creation statistics from the backend API.
+   * This typically includes the number of users created over time, grouped by date.
+   * Useful for visualizing user registration trends or generating usage reports.
+   */
+  getUserCreationStats(): Observable<HttpResponse<UserCreationStatsResponse>>;
 }

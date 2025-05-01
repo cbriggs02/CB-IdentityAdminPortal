@@ -1,1 +1,9 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
+.chart-container {
+  width: 100%;
+}

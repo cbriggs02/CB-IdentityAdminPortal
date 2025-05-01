@@ -5,6 +5,7 @@ import { API_ROUTES } from '../../constants/routes/api-routes.constants';
 import { IUserService } from '../../interfaces/user-management/user.service.interface';
 import { UserStateMetricResponse } from '../../interfaces/user-management/user-state-metrics-response.interface';
 import { AuthHeaderService } from '../auth/auth-header.service';
+import { UserCreationStatsResponse } from '../../interfaces/user-management/user-creation-stats-response.interface';
 
 /**
  * @Author : Christian Briglio
@@ -35,6 +36,22 @@ export class UserService implements IUserService {
     const headers = this.authHeaderService.buildAuthHeaders();
     return this.http.get<UserStateMetricResponse>(
       API_ROUTES.USERS.STATE_METRICS,
+      {
+        headers,
+        observe: 'response',
+      }
+    );
+  }
+
+  /**
+   * Retrieves user creation statistics from the backend API.
+   * This may include metrics such as the number of users created per day,
+   * week, or other time-based trends useful for monitoring user growth.
+   */
+  getUserCreationStats(): Observable<HttpResponse<UserCreationStatsResponse>> {
+    const headers = this.authHeaderService.buildAuthHeaders();
+    return this.http.get<UserCreationStatsResponse>(
+      API_ROUTES.USERS.CREATION_STATS,
       {
         headers,
         observe: 'response',

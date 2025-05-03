@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_ROUTES } from '../../constants/routes/api-routes.constants';
 import { IUserService } from '../../interfaces/user-management/user.service.interface';
-import { UserStateMetricResponse } from '../../interfaces/user-management/user-state-metrics-response.interface';
+import { UserStateMetricResponse } from '../../interfaces/user-management/models/user-state-metrics-response.interface';
 import { AuthHeaderService } from '../auth/auth-header.service';
-import { UserCreationStatsResponse } from '../../interfaces/user-management/user-creation-stats-response.interface';
+import { UserCreationStatsResponse } from '../../interfaces/user-management/models/user-creation-stats-response.interface';
 
 /**
  * @Author : Christian Briglio

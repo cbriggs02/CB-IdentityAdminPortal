@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
-import { AppRoutes } from '../constants/routes/app-routes.constants';
-import { LoggingService } from '../services/logging.service';
-import { TokenService } from '../services/auth/token.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { AppRoutes } from '../../constants/routes/app-routes.constants';
+import { LoggingService } from '../../services/utilities/logging.service';
+import { TokenService } from '../../services/auth/token.service';
 
 /**
  * @Author : Christian Briglio

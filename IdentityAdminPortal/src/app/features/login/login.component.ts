@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/auth/auth.service';
-import { LoginCredentials } from '../../core/models/login-credentials.model';
+import { LoginCredentials } from '../../core/interfaces/auth/models/login-credentials.interface';
 import { ErrorMessages } from '../../core/constants/error-messages.constants';
 import { LoginApiErrorTypes } from '../../core/enums/api-error-types/login-api-error-types.enum';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ApiErrorResponse } from '../../core/interfaces/shared/api-error-response.interface';
+import { ApiErrorResponse } from '../../core/interfaces/models/api-error-response.interface';
 import { Router } from '@angular/router';
 import { AppRoutes } from '../../core/constants/routes/app-routes.constants';
 
@@ -25,7 +25,7 @@ import { AppRoutes } from '../../core/constants/routes/app-routes.constants';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  credentials: LoginCredentials = new LoginCredentials('', '');
+  credentials: LoginCredentials = { username: '', password: '' };
   errorMessage: string = '';
   hidePassword = true;
 

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { AuthService } from './auth.service';
 import { CLAIMS } from '../../constants/auth-claims.constants';
-import { LoggingService } from '../logging.service';
+import { LoggingService } from '../utilities/logging.service';
 import { LogLevels } from '../../enums/log-levels.enum';
 
 /**

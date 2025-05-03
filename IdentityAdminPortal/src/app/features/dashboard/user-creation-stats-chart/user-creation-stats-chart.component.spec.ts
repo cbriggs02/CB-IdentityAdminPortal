@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreationStatsChartComponent } from './creation-stats-chart.component';
+import { CreationStatsChartComponent } from './user-creation-stats-chart.component';
 
 describe('CreationStatsChartComponent', () => {
   let component: CreationStatsChartComponent;
@@ -8,9 +8,8 @@ describe('CreationStatsChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreationStatsChartComponent]
-    })
-    .compileComponents();
+      imports: [CreationStatsChartComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CreationStatsChartComponent);
     component = fixture.componentInstance;

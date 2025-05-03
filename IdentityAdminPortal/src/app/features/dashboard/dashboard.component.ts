@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { StateMetricsChartComponent } from './state-metrics-chart/state-metrics-chart.component';
-import { CreationStatsChartComponent } from './creation-stats-chart/creation-stats-chart.component';
+import { StateMetricsChartComponent } from './user-state-metrics-chart/user-state-metrics-chart.component';
+import { CreationStatsChartComponent } from './user-creation-stats-chart/user-creation-stats-chart.component';
 
 /**
  * @Author : Christian Briglio

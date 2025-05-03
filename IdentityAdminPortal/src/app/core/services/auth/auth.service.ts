@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { API_ROUTES } from '../../constants/routes/api-routes.constants';
 import { IAuthService } from '../../interfaces/auth/auth.service.interface';
-import { LoginCredentials } from '../../models/login-credentials.model';
-import { AuthResponse } from '../../interfaces/auth/auth-response.interface';
+import { LoginCredentials } from '../../interfaces/auth/models/login-credentials.interface';
+import { AuthResponse } from '../../interfaces/auth/models/auth-response.interface';
 
 /**
  * @Author : Christian Briglio

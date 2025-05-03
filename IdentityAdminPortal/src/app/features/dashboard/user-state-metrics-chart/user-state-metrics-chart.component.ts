@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import { Color } from '@swimlane/ngx-charts';
 import { UserService } from '../../../core/services/user-management/user.service';
-import { UserStateMetricChartItem } from './models/state-metrics-chart.interface';
+import { UserStateMetricChartItem } from './models/user-state-metrics-chart.interface';
 /**
  * @Author : Christian Briglio
  * @Created : 2025
@@ -11,11 +11,11 @@ import { UserStateMetricChartItem } from './models/state-metrics-chart.interface
  * (total, activated, and deactivated users) in a visual chart using ngx-charts.
  */
 @Component({
-  selector: 'app-state-metrics-chart',
+  selector: 'app-user-state-metrics-chart',
   standalone: true,
   imports: [NgxChartsModule],
-  templateUrl: './state-metrics-chart.component.html',
-  styleUrl: './state-metrics-chart.component.css',
+  templateUrl: './user-state-metrics-chart.component.html',
+  styleUrl: './user-state-metrics-chart.component.css',
 })
 export class StateMetricsChartComponent implements OnInit, OnDestroy {
   single: UserStateMetricChartItem[] = [];

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
-import { TokenService } from '../services/auth/token.service';
-import { AuthService } from '../services/auth/auth.service';
-import { AppRoutes } from '../constants/routes/app-routes.constants';
-import { Role } from '../enums/roles.enum';
-import { LoggingService } from '../services/logging.service';
-import { LogLevels } from '../enums/log-levels.enum';
+import { TokenService } from '../../services/auth/token.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { AppRoutes } from '../../constants/routes/app-routes.constants';
+import { Role } from '../../enums/roles.enum';
+import { LoggingService } from '../../services/utilities/logging.service';
+import { LogLevels } from '../../enums/log-levels.enum';
 
 /**
  * @Author : Christian Briglio

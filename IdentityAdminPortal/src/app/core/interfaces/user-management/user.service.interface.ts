@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { UserStateMetricResponse } from './user-state-metrics-response.interface';
+import { UserStateMetricResponse } from './models/user-state-metrics-response.interface';
 import { HttpResponse } from '@angular/common/http';
-import { UserCreationStatsResponse } from './user-creation-stats-response.interface';
+import { UserCreationStatsResponse } from './models/user-creation-stats-response.interface';
 
 /**
  * @Author Christian Briglio

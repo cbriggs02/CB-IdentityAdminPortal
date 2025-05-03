@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ILoggingService } from '../interfaces/logging.service.interface';
-import { environment } from '../../../environments/environment';
+import { ILoggingService } from '../../interfaces/utilities/logging.service.interface';
+import { environment } from '../../../../environments/environment';
 
 /**
  * @Author Christian Briglio

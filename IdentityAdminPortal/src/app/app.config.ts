@@ -8,7 +8,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { apiErrorInterceptor } from './core/interceptors/api-error.interceptor';
-import { GlobalErrorHandlerService } from './core/services/global-error-handler.service';
+import { GlobalErrorHandlerService } from './core/error-handling/global-error-handler.service';
 
 /**
  * @Author : Christian Briglio

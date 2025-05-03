@@ -1,7 +1,7 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppRoutes } from '../../core/constants/routes/app-routes.constants';
-import { LoggingService } from './logging.service';
+import { AppRoutes } from '../constants/routes/app-routes.constants';
+import { LoggingService } from '../services/utilities/logging.service';
 
 /**
  * @Author : Christian Briglio

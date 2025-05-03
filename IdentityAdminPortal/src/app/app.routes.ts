@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from './core/guards/auth.guard';
+import { AuthGuard } from './core/guards/auth/auth.guard';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
-import { RoleGuard } from './core/guards/role.guard';
+import { RoleGuard } from './core/guards/role/role.guard';
 import { Role } from './core/enums/roles.enum';
 
 /**

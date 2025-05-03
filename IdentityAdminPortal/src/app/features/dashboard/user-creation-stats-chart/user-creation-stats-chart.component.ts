@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Color, NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import { UserService } from '../../../core/services/user-management/user.service';
-import { UserCreationStat } from '../../../core/interfaces/user-management/user-creation-stats-response.interface';
-import { UserCreationChartData } from './models/creation-stats-chart.interface';
+import { UserCreationStat } from '../../../core/interfaces/user-management/models/user-creation-stats-response.interface';
+import { UserCreationChartData } from './models/user-creation-stats-chart.interface';
 
 /**
  * @Author : Christian Briglio
@@ -13,11 +13,11 @@ import { UserCreationChartData } from './models/creation-stats-chart.interface';
  * It also sets up a polling interval to refresh the data every 5 seconds.
  */
 @Component({
-  selector: 'app-creation-stats-chart',
+  selector: 'app-user-creation-stats-chart',
   standalone: true,
   imports: [NgxChartsModule],
-  templateUrl: './creation-stats-chart.component.html',
-  styleUrl: './creation-stats-chart.component.css',
+  templateUrl: './user-creation-stats-chart.component.html',
+  styleUrl: './user-creation-stats-chart.component.css',
 })
 export class CreationStatsChartComponent implements OnInit, OnDestroy {
   data: UserCreationChartData[] = [];

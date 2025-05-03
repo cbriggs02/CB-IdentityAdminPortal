@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { LoginCredentials } from '../../models/login-credentials.model';
-import { AuthResponse } from './auth-response.interface';
+import { LoginCredentials } from './models/login-credentials.interface';
+import { AuthResponse } from './models/auth-response.interface';
 
 /**
  * @Author : Christian Briglio

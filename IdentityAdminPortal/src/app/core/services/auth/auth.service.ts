@@ -5,6 +5,11 @@ import { API_ROUTES } from '../../constants/routes/api-routes.constants';
 import { IAuthService } from '../../interfaces/auth/auth.service.interface';
 import { LoginCredentials } from '../../interfaces/auth/models/login-credentials.interface';
 import { AuthResponse } from '../../interfaces/auth/models/auth-response.interface';
+import { ValidatorService } from '../utilities/validator.service';
+import {
+  ValidationFieldLabels,
+  ValidationObjectLabels,
+} from '../../enums/validation-labels.enum';
 
 /**
  * @Author : Christian Briglio
@@ -16,14 +21,15 @@ import { AuthResponse } from '../../interfaces/auth/models/auth-response.interfa
 @Injectable({ providedIn: 'root' })
 export class AuthService implements IAuthService {
   /**
-   * Constructor for the AuthService.
-   * Initializes the AuthService instance and injects the necessary dependencies.
-   * The constructor primarily sets up the HttpClient to interact with the backend API
-   * for authentication-related requests.
+   * Constructs the AuthService with required dependencies.
    *
-   * @param http - The HttpClient service used to make HTTP requests to the backend API.
+   * @param http - Angular HttpClient used to make HTTP requests to the backend API.
+   * @param validatorService - Service used to validate login credentials before making requests.
    */
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private validatorService: ValidatorService
+  ) {}
 
   /**
    * Logs the user in by sending credentials to the backend API.
@@ -31,13 +37,28 @@ export class AuthService implements IAuthService {
    * @returns Observable that resolves with the authentication response.
    */
   login(credentials: LoginCredentials): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(API_ROUTES.LOGIN, credentials).pipe(
-      tap((response: AuthResponse) => {
-        if (response?.token) {
-          sessionStorage.setItem('authToken', response.token);
-        }
-      })
+    this.validatorService.validateObject(
+      credentials,
+      ValidationObjectLabels.LoginCredentials
     );
+    this.validatorService.validateString(
+      credentials.username,
+      ValidationFieldLabels.UserName
+    );
+    this.validatorService.validateString(
+      credentials.password,
+      ValidationFieldLabels.Password
+    );
+
+    return this.http
+      .post<AuthResponse>(API_ROUTES.LOGIN.TOKENS, credentials)
+      .pipe(
+        tap((response: AuthResponse) => {
+          if (response?.token) {
+            sessionStorage.setItem('authToken', response.token);
+          }
+        })
+      );
   }
 
   /**

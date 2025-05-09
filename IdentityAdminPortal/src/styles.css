@@ -3,6 +3,7 @@
 
 html,
 body {
+  height: 100%;
   padding: 0;
   margin: 0;
 }
@@ -18,4 +19,32 @@ h2 {
 
 li {
   list-style-type: none;
+}
+
+.app-btn {
+  width: 70px;
+  height: 35px;
+  padding: 0;
+  min-width: unset;
+  font-weight: 500;
+  text-transform: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.app-btn-primary {
+  background-color: #2196F3;
+  border-color: #1976D2;
+}
+
+.app-btn-danger {
+  background-color: #F44336;
+  border-color: #D32F2F;
+}
+
+table.mat-elevation-z8 {
+  background-color: transparent;
+  border-bottom: 1px solid black
 }

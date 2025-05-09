@@ -11,14 +11,20 @@ export const ErrorMessages = {
    * such as login failures and account access issues.
    */
   Auth: {
-    // Shown when a user enters an incorrect username or password.
+    /**
+     * Shown when a user enters an incorrect username or password.
+     */
     InvalidCredentials: 'Invalid username or password.',
 
-    // Shown when a user tries to log in but their account has not yet been activated.
+    /**
+     * Shown when a user tries to log in but their account has not yet been activated.
+     */
     AccountNotActivated:
       'Your account is not activated. Please contact support.',
 
-    // Shown when no account is found with the provided username.
+    /**
+     * Shown when no account is found with the provided username.
+     */
     UserNotFound: 'User not found. Please check your username.',
   },
 
@@ -26,7 +32,9 @@ export const ErrorMessages = {
    * Common - General-purpose fallback error messages for unexpected failures.
    */
   Common: {
-    // Shown when an unknown error occurs and no specific message is available.
+    /**
+     * Shown when an unknown error occurs and no specific message is available.
+     */
     UnknownError: 'An unexpected error occurred. Please try again later.',
   },
 };

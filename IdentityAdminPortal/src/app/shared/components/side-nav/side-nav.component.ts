@@ -18,4 +18,5 @@ import { AppRoutes } from '../../../core/constants/routes/app-routes.constants';
 })
 export class SideNavComponent {
   dashboardRoute = AppRoutes.DASHBOARD;
+  auditLogRoute = AppRoutes.AUDIT_LOGS;
 }

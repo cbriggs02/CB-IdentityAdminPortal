@@ -1,0 +1,40 @@
+<mat-card [ngClass]="cardSize" *ngIf="logDetails">
+  <mat-card-header>
+    <mat-card-title>Log Details</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>
+      <strong>Action:</strong>
+      {{ AuditLogTypeLabels[logDetails.auditLog.action] || "Unknown Action" }}
+    </p>
+    <p *ngIf="logDetails.auditLog?.userId">
+      <strong>User Id:</strong> {{ logDetails.auditLog.userId }}
+    </p>
+    <p><strong>Details:</strong> {{ logDetails.auditLog.details }}</p>
+    <p><strong>Ip Address:</strong> {{ logDetails.auditLog.ipAddress }}</p>
+    <p>
+      <strong>Timestamp:</strong>
+      {{ logDetails.auditLog.timeStamp | date : "medium" }}
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions class="btn-container">
+    <button
+      mat-flat-button
+      color="primary"
+      class="app-btn app-btn-primary"
+      [routerLink]="auditLogRoute"
+    >
+      Back
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      class="app-btn app-btn-danger"
+      (click)="deleteLog()"
+    >
+      Delete
+    </button>
+  </mat-card-actions>
+</mat-card>

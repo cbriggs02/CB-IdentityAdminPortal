@@ -30,6 +30,24 @@ export const routes: Routes = [
             (m) => m.DashboardComponent
           ),
       },
+      {
+        path: 'audit-logs',
+        canActivate: [RoleGuard],
+        data: { roles: [Role.SuperAdmin] },
+        loadComponent: () =>
+          import('./features/audit-logs/audit-logs.component').then(
+            (m) => m.AuditLogsComponent
+          ),
+      },
+      {
+        path: 'audit-log/:id',
+        canActivate: [RoleGuard],
+        data: { roles: [Role.SuperAdmin] },
+        loadComponent: () =>
+          import(
+            './features/audit-logs/audit-log-details/audit-log-details.component'
+          ).then((m) => m.AuditLogDetailsComponent),
+      },
     ],
   },
   {

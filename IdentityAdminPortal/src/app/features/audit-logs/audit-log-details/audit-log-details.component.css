@@ -1,0 +1,23 @@
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+mat-card {
+  width: auto;
+  max-width: 2000px;
+  margin: 5rem auto;
+  padding: 3rem 4rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+mat-card.small {
+  max-width: 1000px;
+}
+
+mat-card.extra-small {
+  max-width: 700px;
+}

@@ -29,11 +29,23 @@ export const AppRoutes = {
    * Route for the Unauthorized page.
    * Users are redirected to this page if they attempt to access a restricted area without proper credentials.
    */
-  UNAUTHORIZED: 'error/access-denied',
+  UNAUTHORIZED: '/access-denied',
 
   /**
    * Route for the Forbidden page.
    * This page is shown when users do not have permission to access a particular resource or page.
    */
-  FORBIDDEN: 'error/forbidden',
+  FORBIDDEN: '/forbidden',
+
+  /**
+   * Route for the Audit Logs page.
+   * Displays a list of audit logs that record key actions taken by users within the application.
+   */
+  AUDIT_LOGS: '/audit-logs',
+
+  /**
+   * Route for viewing the details of a specific audit log entry.
+   * Used when inspecting an individual audit record in more detail.
+   */
+  AUDIT_LOG_DETAILS: '/audit-log',
 };

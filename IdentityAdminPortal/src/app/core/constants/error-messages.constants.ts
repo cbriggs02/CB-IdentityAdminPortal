@@ -36,5 +36,11 @@ export const ErrorMessages = {
      * Shown when an unknown error occurs and no specific message is available.
      */
     UnknownError: 'An unexpected error occurred. Please try again later.',
+
+    /**
+     * Shown when the user has exceeded the maximum number of allowed attempts within 1 minute.
+     */
+    RateLimitExceeded:
+      'You have exceeded the maximum number of attempts allowed in 1 minute. Please wait a moment and try again.',
   },
 };

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Color, NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import { UserService } from '../../../core/services/user-management/user.service';
-import { UserCreationStat } from '../../../core/interfaces/user-management/models/user-creation-stats-response.interface';
+import { UserCreationStat } from '../../../core/interfaces/user-management/models/users/user-creation-stats-response.interface';
 import { UserCreationChartData } from './models/user-creation-stats-chart.interface';
 
 /**
@@ -34,7 +34,7 @@ export class CreationStatsChartComponent implements OnInit, OnDestroy {
    *
    * @param userService - The service responsible for fetching user creation stats from the backend.
    */
-  constructor(private userService: UserService) {}
+  constructor(private readonly userService: UserService) {}
 
   /**
    * ngOnInit lifecycle hook.

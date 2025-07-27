@@ -17,5 +17,5 @@ import { AppRoutes } from '../../core/constants/routes/app-routes.constants';
   styleUrl: './page-not-found.component.css',
 })
 export class NotFoundComponent {
-  dashboardRoute = AppRoutes.DASHBOARD;
+  readonly dashboardRoute = AppRoutes.DASHBOARD;
 }

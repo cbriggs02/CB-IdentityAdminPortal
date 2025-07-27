@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { AuditAction } from '../../../core/enums/audit-action.enum';
 import { AuditLogTypeLabels } from '../audit-log-type-labels.constant';
 import { AppRoutes } from '../../../core/constants/routes/app-routes.constants';
+import { ConfirmationService } from '../../../core/services/utilities/confirmation.service';
+import { NotificationService } from '../../../core/services/utilities/notification.service';
 
 /**
  * @Author Christian Briglio
@@ -37,12 +39,16 @@ export class AuditLogDetailsComponent implements OnInit {
    *
    * @param route - Provides access to route parameters (e.g. log ID)
    * @param auditLogService - Service for fetching and deleting audit log data
+   * @param confirmationService - Service to handle user confirmation dialogs.
+   * @param notificationService - Utility service to display user notifications such as success or error messages.
    * @param router - Used for navigation after deleting a log
    */
   constructor(
-    private route: ActivatedRoute,
-    private auditLogService: AuditLogService,
-    private router: Router
+    private readonly route: ActivatedRoute,
+    private readonly auditLogService: AuditLogService,
+    private readonly confirmationService: ConfirmationService,
+    private readonly notificationService: NotificationService,
+    private readonly router: Router
   ) {}
 
   /**
@@ -79,9 +85,17 @@ export class AuditLogDetailsComponent implements OnInit {
    * Deletes the specified audit log entry and navigates back to the list view upon success.
    */
   deleteLog(): void {
+    const confirmed = this.confirmationService.confirm(
+      'Are you sure you want to delete this audit log?'
+    );
+    if (!confirmed) return;
+
     this.auditLogService.deleteLog(this.logId).subscribe({
       next: () => {
         this.router.navigate([this.auditLogRoute]);
+      },
+      error: () => {
+        this.notificationService.showError('Failed to delete audit log');
       },
     });
   }

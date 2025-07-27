@@ -36,7 +36,10 @@ export class LoginComponent {
    * @param authService - The authentication service used for logging in the user.
    * @param router - The Angular Router service used for navigating to different routes in the application.
    */
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router
+  ) {}
 
   /**
    * togglePassword - Toggles the visibility of the password input field.
@@ -77,6 +80,8 @@ export class LoginComponent {
       return errors.join(', ');
     } else if (error.status === 404) {
       return ErrorMessages.Auth.UserNotFound;
+    } else if (error.status === 429) {
+      return ErrorMessages.Common.RateLimitExceeded;
     }
 
     return ErrorMessages.Common.UnknownError;

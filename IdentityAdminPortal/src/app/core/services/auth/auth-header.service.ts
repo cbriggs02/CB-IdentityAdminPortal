@@ -20,7 +20,7 @@ export class AuthHeaderService implements IAuthHeaderService {
    * @param authService - Injected AuthService instance used to retrieve the
    * authorization token from the authentication system.
    */
-  constructor(private authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
   /**
    * Builds the HTTP headers required for an authenticated API request.

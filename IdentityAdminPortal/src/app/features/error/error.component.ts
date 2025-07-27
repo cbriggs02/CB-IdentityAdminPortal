@@ -20,5 +20,5 @@ import { AppRoutes } from '../../core/constants/routes/app-routes.constants';
   styleUrl: './error.component.css',
 })
 export class ErrorComponent {
-  dashboardRoute = AppRoutes.DASHBOARD;
+  readonly dashboardRoute = AppRoutes.DASHBOARD;
 }

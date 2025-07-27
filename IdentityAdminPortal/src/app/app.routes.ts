@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth/auth.guard';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 import { RoleGuard } from './core/guards/role/role.guard';
-import { Role } from './core/enums/roles.enum';
+import { GlobalRole, AppRoles } from './core/enums/roles.enum';
 
 /**
  * @Author : Christian Briglio
@@ -21,7 +21,7 @@ export const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     canActivate: [AuthGuard, RoleGuard],
-    data: { roles: [Role.Admin, Role.SuperAdmin] },
+    data: { roles: AppRoles },
     children: [
       {
         path: 'dashboards',
@@ -33,7 +33,7 @@ export const routes: Routes = [
       {
         path: 'audit-logs',
         canActivate: [RoleGuard],
-        data: { roles: [Role.SuperAdmin] },
+        data: { roles: [GlobalRole.SuperAdmin] },
         loadComponent: () =>
           import('./features/audit-logs/audit-logs.component').then(
             (m) => m.AuditLogsComponent
@@ -42,11 +42,25 @@ export const routes: Routes = [
       {
         path: 'audit-log/:id',
         canActivate: [RoleGuard],
-        data: { roles: [Role.SuperAdmin] },
+        data: { roles: [GlobalRole.SuperAdmin] },
         loadComponent: () =>
           import(
             './features/audit-logs/audit-log-details/audit-log-details.component'
           ).then((m) => m.AuditLogDetailsComponent),
+      },
+      {
+        path: 'users',
+        loadComponent: () =>
+          import('./features/users/users.component').then(
+            (m) => m.UsersComponent
+          ),
+      },
+      {
+        path: 'user/:id',
+        loadComponent: () =>
+          import('./features/users/user-details/user-details.component').then(
+            (m) => m.UserDetailsComponent
+          ),
       },
     ],
   },

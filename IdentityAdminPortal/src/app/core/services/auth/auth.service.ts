@@ -7,7 +7,7 @@ import { LoginCredentials } from '../../interfaces/auth/models/login-credentials
 import { AuthResponse } from '../../interfaces/auth/models/auth-response.interface';
 import { ValidatorService } from '../utilities/validator.service';
 import {
-  ValidationFieldLabels,
+  UserFieldLabels,
   ValidationObjectLabels,
 } from '../../enums/validation-labels.enum';
 
@@ -27,8 +27,8 @@ export class AuthService implements IAuthService {
    * @param validatorService - Service used to validate login credentials before making requests.
    */
   constructor(
-    private http: HttpClient,
-    private validatorService: ValidatorService
+    private readonly http: HttpClient,
+    private readonly validatorService: ValidatorService
   ) {}
 
   /**
@@ -43,11 +43,11 @@ export class AuthService implements IAuthService {
     );
     this.validatorService.validateString(
       credentials.username,
-      ValidationFieldLabels.UserName
+      UserFieldLabels.UserName
     );
     this.validatorService.validateString(
       credentials.password,
-      ValidationFieldLabels.Password
+      UserFieldLabels.Password
     );
 
     return this.http

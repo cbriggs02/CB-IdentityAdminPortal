@@ -28,8 +28,8 @@ export class TokenService implements ITokenService {
    * @param logger - The LoggingService used for logging errors and important information.
    */
   constructor(
-    private authService: AuthService,
-    private logger: LoggingService
+    private readonly authService: AuthService,
+    private readonly logger: LoggingService
   ) {}
 
   /**

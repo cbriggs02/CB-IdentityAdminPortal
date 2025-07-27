@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { TokenService } from '../../services/auth/token.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { AppRoutes } from '../../constants/routes/app-routes.constants';
-import { Role } from '../../enums/roles.enum';
+import { AppRoles, GlobalRole } from '../../enums/roles.enum';
 import { LoggingService } from '../../services/utilities/logging.service';
 import { LogLevels } from '../../enums/log-levels.enum';
 
@@ -25,10 +25,10 @@ export class RoleGuard implements CanActivate {
    * @param router Angular Router used for navigation upon access denial.
    */
   constructor(
-    private tokenService: TokenService,
-    private authService: AuthService,
-    private logger: LoggingService,
-    private router: Router
+    private readonly tokenService: TokenService,
+    private readonly authService: AuthService,
+    private readonly logger: LoggingService,
+    private readonly router: Router
   ) {}
 
   /**
@@ -43,8 +43,8 @@ export class RoleGuard implements CanActivate {
    * @returns True if the user has at least one of the required roles; otherwise, false.
    */
   canActivate(route: ActivatedRouteSnapshot): boolean {
-    const userRoles = this.tokenService.getUserRoles();
-    const requiredRoles: string[] = route.data['roles'];
+    const userRoles = this.tokenService.getUserRoles() as GlobalRole[];
+    const requiredRoles: GlobalRole[] = route.data['roles'];
 
     if (!userRoles || userRoles.length === 0) {
       this.logActivity('No roles found in decoded token.', LogLevels.Info);
@@ -52,14 +52,13 @@ export class RoleGuard implements CanActivate {
       return false;
     }
 
-    const isAdminOrSuperAdmin =
-      userRoles.includes(Role.Admin) || userRoles.includes(Role.SuperAdmin);
+    const isAppUser = userRoles.some((role) => AppRoles.includes(role));
     const hasRequiredRole = userRoles.some((role) =>
       requiredRoles.includes(role)
     );
 
     if (!hasRequiredRole) {
-      if (isAdminOrSuperAdmin) {
+      if (isAppUser) {
         this.logActivity(
           `Admin user attempted to access restricted page: ${route.routeConfig?.path}.`,
           LogLevels.Warning

@@ -8,7 +8,12 @@
  * and the counts of activated and deactivated users.
  */
 export interface UserStateMetricResponse {
-  totalCount: number;
-  activatedUsers: number;
-  deactivatedUsers: number;
+  /** Total number of users in the system */
+  readonly totalCount: number;
+
+  /** Number of users whose accounts are currently activated */
+  readonly activatedUsers: number;
+
+  /** Number of users whose accounts are currently deactivated */
+  readonly deactivatedUsers: number;
 }

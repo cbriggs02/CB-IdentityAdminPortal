@@ -19,5 +19,5 @@ import { AppRoutes } from '../../core/constants/routes/app-routes.constants';
   styleUrl: './unauthorized.component.css',
 })
 export class UnauthorizedComponent {
-  loginRoute = AppRoutes.LOGIN;
+  readonly loginRoute = AppRoutes.LOGIN;
 }

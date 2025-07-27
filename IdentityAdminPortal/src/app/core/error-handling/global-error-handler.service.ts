@@ -20,7 +20,10 @@ export class GlobalErrorHandlerService implements ErrorHandler {
    * @param router - Angular Router to navigate to error pages
    * @param loggingService - Service for logging error messages
    */
-  constructor(private router: Router, private loggingService: LoggingService) {}
+  constructor(
+    private readonly router: Router,
+    private readonly loggingService: LoggingService
+  ) {}
 
   /**
    * handleError method is invoked when an unhandled error occurs.

@@ -48,4 +48,16 @@ export const AppRoutes = {
    * Used when inspecting an individual audit record in more detail.
    */
   AUDIT_LOG_DETAILS: '/audit-log',
+
+  /**
+   * Route for the Users page.
+   * Displays a paginated, filterable list of all users within the system.
+   */
+  USERS: '/users',
+
+  /**
+   * Route for viewing the details of a specific user.
+   * Used when navigating to a user's profile or management page.
+   */
+  USER_DETAILS: '/user',
 };

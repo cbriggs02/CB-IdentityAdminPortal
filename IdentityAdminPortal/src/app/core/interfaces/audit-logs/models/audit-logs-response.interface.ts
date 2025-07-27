@@ -9,9 +9,14 @@ import { PaginationResponse } from '../../models/pagination-response.interface';
  * containing essential fields such as the log's ID, action, and timestamp.
  */
 export interface SimplifiedAuditLog {
-  id: string;
-  action: AuditAction;
-  timeStamp: Date;
+  /** Unique identifier of the audit log entry */
+  readonly id: string;
+
+  /** The action performed that generated this audit log */
+  readonly action: AuditAction;
+
+  /** Timestamp indicating when the audit log was recorded */
+  readonly timeStamp: Date;
 }
 
 /**
@@ -22,6 +27,9 @@ export interface SimplifiedAuditLog {
  * Includes the list of logs and pagination metadata.
  */
 export interface AuditLogsResponse {
-  logs: SimplifiedAuditLog[];
-  paginationMetadata: PaginationResponse;
+  /** Array of simplified audit log entries */
+  readonly logs: SimplifiedAuditLog[];
+
+  /** Pagination information for the response */
+  readonly paginationMetadata: PaginationResponse;
 }

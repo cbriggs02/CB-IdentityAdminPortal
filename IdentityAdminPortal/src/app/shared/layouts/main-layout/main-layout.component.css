@@ -1,14 +1,13 @@
 .layout-container {
   display: flex;
-  height: 100vh;
 }
 
 app-side-nav {
   width: 250px;
   background-color: #1A1A1A;
   color: #FFF;
-  height: 100%;
   padding-top: 20px;
+  display: block;
 }
 
 .main-content {

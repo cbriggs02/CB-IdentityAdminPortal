@@ -8,12 +8,12 @@ import { environment } from '../../../../environments/environment';
  * Each property represents a different API route used throughout the application.
  */
 export const APIS = {
-  USERS: 'Users',
-  LOGIN: 'Login',
-  AUDIT_LOGS: 'AuditLogs',
-  PASSWORD: 'Password',
-  ROLE: 'Roles',
-  COUNTRIES: 'Countries',
+  USERS: 'users',
+  LOGIN: 'login',
+  AUDIT_LOGS: 'audit-logs',
+  PASSWORD: 'password',
+  ROLE: 'roles',
+  COUNTRIES: 'countries',
 } as const;
 
 /**
@@ -29,7 +29,7 @@ export const API_ROUTES = {
    * Encapsulates routes for user authentication and token management.
    */
   LOGIN: {
-    TOKENS: `${environment.apiBaseUrl}/api/${environment.apiVersion}/${APIS.LOGIN}/tokens`,
+    TOKENS: `${environment.apiBaseUrl}/api/${environment.apiVersion}/${APIS.LOGIN}/by-username`,
   },
 
   /**
@@ -39,10 +39,18 @@ export const API_ROUTES = {
   USERS: {
     STATE_METRICS: `${environment.apiBaseUrl}/api/${environment.apiVersion}/${APIS.USERS}/state-metrics`,
     CREATION_STATS: `${environment.apiBaseUrl}/api/${environment.apiVersion}/${APIS.USERS}/creation-stats`,
+    USERS_BASE: `${environment.apiBaseUrl}/api/${environment.apiVersion}/${APIS.USERS}`,
+    ACTIVATE_USER: `${environment.apiBaseUrl}/api/${environment.apiVersion}/${APIS.USERS}/activate`,
+    DEACTIVATE_USER: `${environment.apiBaseUrl}/api/${environment.apiVersion}/${APIS.USERS}/deactivate`,
   },
 
   /**
    * AUDIT_LOGS - Endpoint for accessing audit log entries.
    */
   AUDIT_LOGS: `${environment.apiBaseUrl}/api/${environment.apiVersion}/${APIS.AUDIT_LOGS}`,
+
+  /**
+   * ROLES - Endpoint for accessing role data.
+   */
+  ROLES: `${environment.apiBaseUrl}/api/${environment.apiVersion}/${APIS.ROLE}`,
 };

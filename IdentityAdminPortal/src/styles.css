@@ -6,6 +6,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+  overflow: auto;
 }
 
 body {
@@ -39,6 +40,12 @@ li {
   border-color: #1976D2;
 }
 
+.app-btn-success {
+  background-color: #4CAF50;
+  border-color: #388E3C;
+  color: white;
+}
+
 .app-btn-danger {
   background-color: #F44336;
   border-color: #D32F2F;
@@ -47,4 +54,30 @@ li {
 table.mat-elevation-z8 {
   background-color: transparent;
   border-bottom: 1px solid black
+}
+
+.snackbar-success.mat-mdc-snack-bar-container {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+.snackbar-error.mat-mdc-snack-bar-container {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+.snackbar-info.mat-mdc-snack-bar-container {
+  background-color: #2196F3 !important;
+  color: white !important;
+}
+
+.snackbar-success .mat-mdc-snack-bar-label,
+.snackbar-error .mat-mdc-snack-bar-label,
+.snackbar-info .mat-mdc-snack-bar-label {
+  color: white !important;
+}
+
+.mat-mdc-snack-bar-surface,
+.mdc-snackbar__surface {
+  background-color: inherit !important;
 }

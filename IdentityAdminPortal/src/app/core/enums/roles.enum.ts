@@ -2,19 +2,31 @@
  * @Author : Christian Briglio
  * @Created : 2025
  *
- * Role - Represents the available user roles within the application.
- * These roles are used to control access to protected areas of the system.
+ * GlobalRole - Defines all available user roles recognized across the platform.
+ * These roles are used to control access to features and resources in various applications.
  */
-export enum Role {
+export enum GlobalRole {
   /**
-   * Admin - Represents a user with administrative privileges.
-   * Admins typically have access to management and maintenance features.
+   * User - Standard user with limited access to basic functionality.
+   */
+  User = 'User',
+
+  /**
+   * Admin - Application-level administrator with elevated permissions.
    */
   Admin = 'Admin',
 
   /**
-   * SuperAdmin - Represents a user with the highest level of privileges.
-   * SuperAdmins have full control over the system, including administrative and security-related functions.
+   * SuperAdmin - Platform-wide administrator with full system privileges.
    */
   SuperAdmin = 'SuperAdmin',
 }
+
+/**
+ * @Author : Christian Briglio
+ * @Created : 2025
+ *
+ * AppRoles - Specifies the subset of roles used specifically within the admin application.
+ * These roles are extracted from the GlobalRole enum and define access boundaries for administrative features.
+ */
+export const AppRoles: GlobalRole[] = [GlobalRole.Admin, GlobalRole.SuperAdmin];

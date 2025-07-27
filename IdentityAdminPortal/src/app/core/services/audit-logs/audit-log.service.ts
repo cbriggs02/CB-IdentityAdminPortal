@@ -9,7 +9,8 @@ import { API_ROUTES } from '../../constants/routes/api-routes.constants';
 import { AuditLogResponse } from '../../interfaces/audit-logs/models/audit-log-response.interface';
 import { ValidatorService } from '../utilities/validator.service';
 import {
-  ValidationFieldLabels,
+  AuditLogFieldLabels,
+  PaginationFieldLabels,
   ValidationObjectLabels,
 } from '../../enums/validation-labels.enum';
 
@@ -30,9 +31,9 @@ export class AuditLogService implements IAuditLogService {
    * @param validatorService - Utility service for validating request inputs
    */
   constructor(
-    private http: HttpClient,
-    private authHeaderService: AuthHeaderService,
-    private validatorService: ValidatorService
+    private readonly http: HttpClient,
+    private readonly authHeaderService: AuthHeaderService,
+    private readonly validatorService: ValidatorService
   ) {}
 
   /**
@@ -50,12 +51,12 @@ export class AuditLogService implements IAuditLogService {
     );
     this.validatorService.validateNumber(
       request.page,
-      ValidationFieldLabels.Page,
+      PaginationFieldLabels.Page,
       1
     );
     this.validatorService.validateNumber(
       request.pageSize,
-      ValidationFieldLabels.PageSize,
+      PaginationFieldLabels.PageSize,
       1
     );
 
@@ -82,7 +83,7 @@ export class AuditLogService implements IAuditLogService {
    * @returns Observable emitting the AuditLogResponse object
    */
   getLogDetails(id: string): Observable<AuditLogResponse> {
-    this.validatorService.validateString(id, ValidationFieldLabels.AuditLogId);
+    this.validatorService.validateString(id, AuditLogFieldLabels.AuditLogId);
     const headers = this.authHeaderService.buildAuthHeaders();
     return this.http.get<AuditLogResponse>(`${API_ROUTES.AUDIT_LOGS}/${id}`, {
       headers,
@@ -96,7 +97,7 @@ export class AuditLogService implements IAuditLogService {
    * @returns Observable that completes when the deletion is successful
    */
   deleteLog(id: string): Observable<void> {
-    this.validatorService.validateString(id, ValidationFieldLabels.AuditLogId);
+    this.validatorService.validateString(id, AuditLogFieldLabels.AuditLogId);
     const headers = this.authHeaderService.buildAuthHeaders();
     return this.http.delete<void>(`${API_ROUTES.AUDIT_LOGS}/${id}`, {
       headers,

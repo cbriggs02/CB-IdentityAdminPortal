@@ -18,5 +18,5 @@ import { AppRoutes } from '../../core/constants/routes/app-routes.constants';
   styleUrl: './forbidden.component.css',
 })
 export class ForbiddenComponent {
-  dashboardRoute = AppRoutes.DASHBOARD;
+  readonly dashboardRoute = AppRoutes.DASHBOARD;
 }

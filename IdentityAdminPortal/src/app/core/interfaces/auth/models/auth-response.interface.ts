@@ -7,5 +7,5 @@
  * Additional fields can be added as needed (e.g., user details, expiration, etc.).
  */
 export interface AuthResponse {
-  token: string;
+  readonly token: string;
 }

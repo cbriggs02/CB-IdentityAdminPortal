@@ -47,8 +47,8 @@ export class AuditLogsComponent implements OnInit {
    * @param router - Angular Router used to navigate to log details.
    */
   constructor(
-    private auditLogService: AuditLogService,
-    private router: Router
+    private readonly auditLogService: AuditLogService,
+    private readonly router: Router
   ) {}
 
   /**

@@ -29,10 +29,10 @@ export class AuthGuard implements CanActivate {
    * @param router - The Angular Router used for navigation between application routes.
    */
   constructor(
-    private authService: AuthService,
-    private logger: LoggingService,
-    private tokenService: TokenService,
-    private router: Router
+    private readonly authService: AuthService,
+    private readonly logger: LoggingService,
+    private readonly tokenService: TokenService,
+    private readonly router: Router
   ) {}
 
   /**

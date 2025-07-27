@@ -1,0 +1,78 @@
+<mat-card *ngIf="userDetails">
+  <mat-card-header>
+    <mat-card-title>User Details</mat-card-title>
+  </mat-card-header>
+
+  <div class="user-container">
+    <mat-card-content>
+      <p><strong>User Name:</strong> {{ userDetails.user.userName }}</p>
+      <p><strong>First Name:</strong> {{ userDetails.user.firstName }}</p>
+      <p><strong>Last Name:</strong> {{ userDetails.user.lastName }}</p>
+      <p><strong>Email:</strong> {{ userDetails.user.email }}</p>
+      <p><strong>Phone Number:</strong> {{ userDetails.user.phoneNumber }}</p>
+      <p><strong>Country:</strong> {{ userDetails.user.countryName }}</p>
+    </mat-card-content>
+
+    <mat-card-content class="update-field">
+      <!-- Update User Role Column -->
+      <mat-form-field
+        *ngIf="
+          userContextRole === 'SuperAdmin' &&
+          userDetails.user.accountStatus === 1
+        "
+        appearance="outline"
+      >
+        <mat-label>User Role</mat-label>
+        <mat-select
+          [(ngModel)]="selectedRoleId"
+          (selectionChange)="onRoleChange($event.value)"
+        >
+          <mat-option *ngFor="let role of roles" [value]="role.id">
+            {{ userRoleLabels[role.name] }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Update Account Status Column -->
+      <mat-form-field appearance="outline">
+        <mat-label>Account Status</mat-label>
+        <mat-select
+          [(value)]="selectedStatus"
+          (selectionChange)="onAccountStatusChange($event.value)"
+        >
+          <mat-option *ngFor="let key of statusKeys" [value]="key">
+            {{ accountStatusLabels[key] }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+  </div>
+
+  <mat-card-actions class="btn-container">
+    <button
+      mat-flat-button
+      color="primary"
+      class="app-btn app-btn-primary"
+      [routerLink]="userRoute"
+    >
+      Back
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      class="app-btn app-btn-success"
+      [disabled]="isSaveDisabled"
+      (click)="updateUserSettings()"
+    >
+      Save
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      class="app-btn app-btn-danger"
+      (click)="deleteUser()"
+    >
+      Delete
+    </button>
+  </mat-card-actions>
+</mat-card>

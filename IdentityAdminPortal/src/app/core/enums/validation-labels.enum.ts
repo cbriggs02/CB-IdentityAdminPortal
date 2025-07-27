@@ -2,17 +2,49 @@
  * @Author Christian Briglio
  * @Created 2025
  *
- * ValidationFieldLabels - Enum that holds constant string values representing the names of individual form fields
- * or input fields used in validation across the application.
- * This enum centralizes the labeling of common field names, ensuring consistency and reducing
- * the risk of errors due to hardcoded strings in validation-related messages or code.
+ * UserFieldLabels - Enum that holds string constants for field names related to user-specific input or form fields.
+ * These values are used throughout the application in validation logic, ensuring consistency
+ * when referring to user-related fields in error messages or UI elements.
  */
-export enum ValidationFieldLabels {
-  AuditLogId = 'Audit log ID',
-  Page = 'Page',
-  PageSize = 'Page Size',
+export enum UserFieldLabels {
+  UserId = 'User ID',
   UserName = 'User Name',
   Password = 'Password',
+}
+
+/**
+ * @Author Christian Briglio
+ * @Created 2025
+ *
+ * AuditLogFieldLabels - Enum that holds string constants for field names related to audit log inputs or filters.
+ * This helps maintain consistent labeling across validations and log-related forms.
+ */
+export enum AuditLogFieldLabels {
+  AuditLogId = 'Audit log ID',
+}
+
+/**
+ * @Author Christian Briglio
+ * @Created 2025
+ *
+ * RoleFieldLabels - Enum that holds string constants for role-related fields, commonly used in validation.
+ * Provides clarity and consistency in UI labels and error messaging for role management.
+ */
+export enum RoleFieldLabels {
+  RoleId = 'Role ID',
+  RoleName = 'Role Name',
+}
+
+/**
+ * @Author Christian Briglio
+ * @Created 2025
+ *
+ * PaginationFieldLabels - Enum that defines constant string values for pagination-related fields.
+ * Centralizing these labels ensures consistency in UI messages and backend validation related to pagination.
+ */
+export enum PaginationFieldLabels {
+  Page = 'Page',
+  PageSize = 'Page Size',
 }
 
 /**
@@ -28,4 +60,5 @@ export enum ValidationFieldLabels {
 export enum ValidationObjectLabels {
   LoginCredentials = 'Login Credentials',
   AuditLogsRequest = 'Audit Logs List Request',
+  UsersRequest = 'Users List Request',
 }

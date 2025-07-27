@@ -19,8 +19,8 @@ export class LoggingService implements ILoggingService {
    * @param message - The message to be logged, typically a string describing the event or information.
    */
   log(message: string): void {
-    if (!environment.production) {
-      console.log(message);
+    if (!environment.production && message != null) {
+      console.warn(this.formatMessage(message));
     }
   }
 
@@ -31,8 +31,8 @@ export class LoggingService implements ILoggingService {
    * @param message - The error message to be logged, typically a string describing the error or failure.
    */
   error(message: string): void {
-    if (!environment.production) {
-      console.error(message);
+    if (!environment.production && message != null) {
+      console.warn(this.formatMessage(message));
     }
   }
 
@@ -43,8 +43,8 @@ export class LoggingService implements ILoggingService {
    * @param message - The informational message to be logged, typically a string with application details.
    */
   info(message: string): void {
-    if (!environment.production) {
-      console.info(message);
+    if (!environment.production && message != null) {
+      console.warn(this.formatMessage(message));
     }
   }
 
@@ -55,8 +55,19 @@ export class LoggingService implements ILoggingService {
    * @param message - The warning message to be logged, typically a string highlighting potential issues.
    */
   warning(message: string): void {
-    if (!environment.production) {
-      console.warn(message);
+    if (!environment.production && message != null) {
+      console.warn(this.formatMessage(message));
+    }
+  }
+
+  private formatMessage(message: any): string {
+    if (typeof message === 'string') {
+      return message;
+    }
+    try {
+      return JSON.stringify(message, null, 2);
+    } catch {
+      return String(message);
     }
   }
 }

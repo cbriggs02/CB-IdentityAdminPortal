@@ -32,7 +32,7 @@ export class StateMetricsChartComponent implements OnInit, OnDestroy {
    *
    * @param userService - The service responsible for fetching user state metrics from the backend.
    */
-  constructor(private userService: UserService) {}
+  constructor(private readonly userService: UserService) {}
 
   /**
    * ngOnInit lifecycle hook.

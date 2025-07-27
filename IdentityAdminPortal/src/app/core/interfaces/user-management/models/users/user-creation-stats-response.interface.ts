@@ -5,8 +5,11 @@
  * UserCreationStat - Represents a single user creation stat entry.
  */
 export interface UserCreationStat {
-  date: string;
-  count: number;
+  /** The date of the user creation statistic in ISO format (e.g., YYYY-MM-DD) */
+  readonly date: string;
+
+  /** The number of users created on the specified date */
+  readonly count: number;
 }
 
 /**
@@ -16,5 +19,6 @@ export interface UserCreationStat {
  * UserCreationStatsResponse - Represents the response for user creation statistics.
  */
 export interface UserCreationStatsResponse {
-  userCreationStats: UserCreationStat[];
+  /** Array of user creation statistics, each representing data for a specific date */
+  readonly userCreationStats: UserCreationStat[];
 }

@@ -5,8 +5,7 @@ import { AccountStatus } from '../../../../enums/account-status.enum';
  * @Created : 2025
  *
  * User - Represents the full details of a user in the system.
- * This interface is typically used when displaying or editing
- * detailed user information.
+ * This interface is typically returned by api when requesting user details.
  */
 export interface User {
   /** Unique identifier for the user */

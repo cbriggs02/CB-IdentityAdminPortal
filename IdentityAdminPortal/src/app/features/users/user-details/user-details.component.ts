@@ -13,11 +13,11 @@ import { AccountStatusLabels } from '../account-status-labels.constant';
 import { Role } from '../../../core/interfaces/user-management/models/roles/role.interface';
 import { RoleService } from '../../../core/services/user-management/role.service';
 import { FormsModule } from '@angular/forms';
-import { TokenService } from '../../../core/services/auth/token.service';
 import { GlobalRole } from '../../../core/enums/roles.enum';
 import { LoggingService } from '../../../core/services/utilities/logging.service';
 import { catchError, Observable, switchMap, tap, throwError } from 'rxjs';
 import { NotificationService } from '../../../core/services/utilities/notification.service';
+import { UserContextService } from '../../../core/services/auth/user-context.service';
 
 /**
  * @Author Christian Briglio
@@ -83,16 +83,17 @@ export class UserDetailsComponent implements OnInit {
    * @param loggerService - Logging service for error reporting and debugging.
    * @param confirmationService - Service to handle user confirmation dialogs.
    * @param notificationService - Utility service to display user notifications such as success or error messages.
+   * @param userContextService - Service responsible for retrieving the current user's role context from the authentication token.
    * @param router - Router service to navigate between application routes.
    */
   constructor(
     private readonly route: ActivatedRoute,
     private readonly userService: UserService,
     private readonly roleService: RoleService,
-    private readonly tokenService: TokenService,
     private readonly loggerService: LoggingService,
     private readonly confirmationService: ConfirmationService,
     private readonly notificationService: NotificationService,
+    private readonly userContextService: UserContextService,
     private readonly router: Router
   ) {}
 
@@ -102,10 +103,12 @@ export class UserDetailsComponent implements OnInit {
    * and determines the current user's role from their authentication token.
    */
   ngOnInit(): void {
-    this.loadRoles();
     this.userId = this.route.snapshot.paramMap.get('id')!;
     this.getUserDetails(this.userId);
-    this.getUserContextRole();
+    this.userContextRole = this.userContextService.getContextRole();
+    if (this.userContextRole === GlobalRole.SuperAdmin) {
+      this.loadRoles();
+    }
   }
 
   /**
@@ -123,25 +126,19 @@ export class UserDetailsComponent implements OnInit {
    * @param id - Unique identifier of the user whose details are to be fetched.
    */
   getUserDetails(id: string): void {
-    this.userService.getUserDetails(id).subscribe((response: UserResponse) => {
-      this.userDetails = response;
-      this.selectedRoleId = response?.user?.roleId ?? null;
-      this.selectedStatus = response?.user?.accountStatus ?? null;
-    });
-  }
+    this.userService.getUserDetails(id).subscribe({
+      next: (response: UserResponse) => {
+        if (!response || !response.user) {
+          this.notificationService.showError('Failed to load user details.');
+          this.userDetails = null;
+          return;
+        }
 
-  /**
-   * Determines the current authenticated user's role by decoding their token.
-   * Logs an error if no roles are found, though this case is unlikely if the user is authenticated.
-   */
-  getUserContextRole(): void {
-    const userRoles = this.tokenService.getUserRoles() as GlobalRole[] | null;
-    if (!userRoles || userRoles.length === 0) {
-      this.loggerService.error('No roles found for authenticated user.');
-      this.userContextRole = null;
-      return;
-    }
-    this.userContextRole = userRoles[0];
+        this.userDetails = response;
+        this.selectedRoleId = response.user.roleId ?? null;
+        this.selectedStatus = response.user.accountStatus ?? null;
+      },
+    });
   }
 
   /**

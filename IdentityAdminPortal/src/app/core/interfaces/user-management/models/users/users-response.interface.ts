@@ -1,4 +1,5 @@
 import { AccountStatus } from '../../../../enums/account-status.enum';
+import { GlobalRole } from '../../../../enums/roles.enum';
 import { PaginationResponse } from '../../../models/pagination-response.interface';
 
 /**
@@ -21,6 +22,9 @@ export interface SimplifiedUser {
 
   /** The current status of the user's account (e.g., Active, Inactive) */
   readonly accountStatus: AccountStatus;
+
+  /** The users role or null if not assigned one yet */
+  readonly roleName?: GlobalRole;
 }
 
 /**

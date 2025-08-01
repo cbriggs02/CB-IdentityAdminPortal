@@ -11,6 +11,10 @@ import { AccountStatus } from '../../core/enums/account-status.enum';
 import { AccountStatusLabels } from './account-status-labels.constant';
 import { UserService } from '../../core/services/user-management/user.service';
 import { UsersRequest } from '../../core/interfaces/user-management/models/users/users-request.interface';
+import { NotificationService } from '../../core/services/utilities/notification.service';
+import { GlobalRole } from '../../core/enums/roles.enum';
+import { LoggingService } from '../../core/services/utilities/logging.service';
+import { UserContextService } from '../../core/services/auth/user-context.service';
 
 /**
  * @Author Christian Briglio
@@ -45,14 +49,22 @@ export class UsersComponent implements OnInit {
   pageSize = 10;
   totalItems = 0;
 
+  userContextRole: GlobalRole | null = null;
+
   /**
    * Initializes the component with required services.
    *
-   * @param userService Service to fetch user data
-   * @param router Used for navigation to user details
+   * @param userService - Service to fetch user data
+   * @param notificationService - Utility service to display user notifications such as success or error messages.
+   * @param userContextService - Service that provides information about the current user's context, including roles and permissions.
+   * @param loggerService - Logging service for error reporting and debugging.
+   * @param router - Used for navigation to user details
    */
   constructor(
     private readonly userService: UserService,
+    private readonly notificationService: NotificationService,
+    private readonly userContextService: UserContextService,
+    private readonly loggerService: LoggingService,
     private readonly router: Router
   ) {}
 
@@ -62,6 +74,7 @@ export class UsersComponent implements OnInit {
    */
   ngOnInit(): void {
     this.fetchUsers();
+    this.userContextRole = this.userContextService.getContextRole();
   }
 
   /**
@@ -74,10 +87,33 @@ export class UsersComponent implements OnInit {
       accountStatus: this.selectedStatus,
     };
 
-    this.userService.getUsers(request).subscribe((response) => {
-      this.dataSource = response.body?.users ?? [];
-      this.totalItems = response.body?.paginationMetadata?.totalCount ?? 0;
+    this.userService.getUsers(request).subscribe({
+      next: (response) => {
+        this.dataSource = response.body?.users ?? [];
+        this.totalItems = response.body?.paginationMetadata?.totalCount ?? 0;
+      },
+      error: () => {
+        this.notificationService.showError('Failed to load users.');
+        this.dataSource = [];
+      },
     });
+  }
+
+  /**
+   * Determines whether a given user is selectable based on the current user's role.
+   *
+   * If the current user has the Admin role, only users with the User role or with no role assigned
+   * are selectable. For all other roles, all users are selectable.
+   *
+   * @param user - The user to check.
+   * @returns `true` if the user is selectable; otherwise, `false`.
+   */
+  isUserSelectable(user: SimplifiedUser): boolean {
+    if (this.userContextRole === GlobalRole.Admin) {
+      return user.roleName === GlobalRole.User || user.roleName == null;
+    }
+
+    return true;
   }
 
   /**

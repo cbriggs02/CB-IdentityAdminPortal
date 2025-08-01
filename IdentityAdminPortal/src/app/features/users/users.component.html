@@ -46,6 +46,7 @@
         mat-flat-button
         color="primary"
         class="app-btn app-btn-primary"
+        [disabled]="!isUserSelectable(user)"
         (click)="viewUser(user.id)"
       >
         Details

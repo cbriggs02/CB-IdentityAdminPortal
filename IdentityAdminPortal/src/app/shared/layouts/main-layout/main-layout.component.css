@@ -13,5 +13,4 @@ app-side-nav {
 .main-content {
   flex: 1;
   padding: 60px 10px;
-  overflow-y: auto;
 }

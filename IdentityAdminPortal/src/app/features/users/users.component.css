@@ -2,3 +2,9 @@
   margin-top: 10px;
   background-color: transparent;
 }
+
+button:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+}

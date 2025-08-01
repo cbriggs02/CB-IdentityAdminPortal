@@ -69,8 +69,15 @@ export class AuditLogDetailsComponent implements OnInit {
     this.auditLogService
       .getLogDetails(id)
       .subscribe((response: AuditLogResponse) => {
-        this.logDetails = response;
+        if (!response || !response.auditLog) {
+          this.notificationService.showError(
+            'Failed to load audit log details.'
+          );
+          this.logDetails = null;
+          return;
+        }
 
+        this.logDetails = response;
         if (this.logDetails.auditLog.details.length < 80) {
           this.cardSize = 'extra-small';
         } else if (this.logDetails.auditLog.details.length < 200) {

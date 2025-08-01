@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 import { CLAIMS } from '../../constants/auth-claims.constants';
 import { LoggingService } from '../utilities/logging.service';
 import { LogLevels } from '../../enums/log-levels.enum';
+import { GlobalRole } from '../../enums/roles.enum';
 
 /**
  * @Author : Christian Briglio
@@ -45,7 +46,7 @@ export class TokenService implements ITokenService {
    * Gets the user's roles from the decoded token.
    * @returns An array of roles or an empty array.
    */
-  getUserRoles(): string[] {
+  getUserRoles(): GlobalRole[] {
     const decoded = this.decodeToken();
     if (!decoded) return [];
 
@@ -53,10 +54,10 @@ export class TokenService implements ITokenService {
     if (!roles) return [];
 
     if (typeof roles === 'string') {
-      return [roles];
+      return [roles as GlobalRole];
     }
 
-    return Array.isArray(roles) ? roles : [];
+    return Array.isArray(roles) ? (roles as GlobalRole[]) : [];
   }
 
   /**

@@ -11,6 +11,7 @@ import { AuditLogTypeLabels } from './audit-log-type-labels.constant';
 import { AuditLogsRequest } from '../../core/interfaces/audit-logs/models/audit-logs-request.interface';
 import { AppRoutes } from '../../core/constants/routes/app-routes.constants';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../core/services/utilities/notification.service';
 
 /**
  * @Author Christian Briglio
@@ -44,10 +45,12 @@ export class AuditLogsComponent implements OnInit {
    * Constructor to inject services used by the component.
    *
    * @param auditLogService - Service to fetch audit log data.
+   * @param notificationService - Utility service to display user notifications such as success or error messages.
    * @param router - Angular Router used to navigate to log details.
    */
   constructor(
     private readonly auditLogService: AuditLogService,
+    private readonly notificationService: NotificationService,
     private readonly router: Router
   ) {}
 
@@ -69,9 +72,15 @@ export class AuditLogsComponent implements OnInit {
       action: this.selectedAction,
     };
 
-    this.auditLogService.getLogs(request).subscribe((response) => {
-      this.dataSource = response.body?.logs ?? [];
-      this.totalItems = response.body?.paginationMetadata?.totalCount ?? 0;
+    this.auditLogService.getLogs(request).subscribe({
+      next: (response) => {
+        this.dataSource = response.body?.logs ?? [];
+        this.totalItems = response.body?.paginationMetadata?.totalCount ?? 0;
+      },
+      error: () => {
+        this.notificationService.showError('Failed to load audit logs.');
+        this.dataSource = [];
+      },
     });
   }
 

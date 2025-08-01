@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
-import { TokenService } from '../../services/auth/token.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { AppRoutes } from '../../constants/routes/app-routes.constants';
 import { AppRoles, GlobalRole } from '../../enums/roles.enum';
 import { LoggingService } from '../../services/utilities/logging.service';
 import { LogLevels } from '../../enums/log-levels.enum';
+import { UserContextService } from '../../services/auth/user-context.service';
 
 /**
  * @Author : Christian Briglio
@@ -19,13 +19,13 @@ export class RoleGuard implements CanActivate {
   /**
    * Initializes the RoleGuard with required services.
    *
-   * @param tokenService Service responsible for handling JWT token operations and retrieving user roles.
+   * @param userContextService Service responsible for retrieving the current user's role context from the authentication token.
    * @param authService Service responsible for authentication actions such as logout.
    * @param logger Service used for logging informational and warning messages.
    * @param router Angular Router used for navigation upon access denial.
    */
   constructor(
-    private readonly tokenService: TokenService,
+    private readonly userContextService: UserContextService,
     private readonly authService: AuthService,
     private readonly logger: LoggingService,
     private readonly router: Router
@@ -43,19 +43,17 @@ export class RoleGuard implements CanActivate {
    * @returns True if the user has at least one of the required roles; otherwise, false.
    */
   canActivate(route: ActivatedRouteSnapshot): boolean {
-    const userRoles = this.tokenService.getUserRoles() as GlobalRole[];
+    const userRole = this.userContextService.getContextRole();
     const requiredRoles: GlobalRole[] = route.data['roles'];
 
-    if (!userRoles || userRoles.length === 0) {
-      this.logActivity('No roles found in decoded token.', LogLevels.Info);
+    if (!userRole || userRole == null) {
+      this.logActivity('No role found in decoded token.', LogLevels.Info);
       this.logoutAndRedirect();
       return false;
     }
 
-    const isAppUser = userRoles.some((role) => AppRoles.includes(role));
-    const hasRequiredRole = userRoles.some((role) =>
-      requiredRoles.includes(role)
-    );
+    const isAppUser = userRole ? AppRoles.includes(userRole) : false;
+    const hasRequiredRole = userRole ? requiredRoles.includes(userRole) : false;
 
     if (!hasRequiredRole) {
       if (isAppUser) {
